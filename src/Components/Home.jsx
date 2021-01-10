@@ -2,32 +2,35 @@ import React from 'react'
 import styled from 'styled-components'
 import Navbar from './Navbar'
 import Hero from './Hero'
-import {ImageOne} from "../../src/Images/house_1.jpg"
+import VideoOne from '../Videos/video.mp4'
 
 const HomeContainer = styled.div`
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    
-    
+    right: ${(props) => (props.shownMenu? '200px': '0')};
 `
 
-const Image = styled.img`
+const Video = styled.video`
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -10;
     object-fit: cover;
 `
-let Home = () => {
+
+
+let Home = ({showSideMenu, setShowSideMenu}) => {
+    
+
     return (
-        <HomeContainer>
-            <Image src={ImageOne} />
-            <Navbar/>
-            <Hero/>
+        <HomeContainer shownMenu={showSideMenu}>
+            <Video src={VideoOne} autoPlay loop muted/>        
+            <Navbar setMenu={setShowSideMenu}  shownMenu={showSideMenu}/>
+            <Hero setShowSideMenu={setShowSideMenu}/>
         </HomeContainer>
     )
 }
